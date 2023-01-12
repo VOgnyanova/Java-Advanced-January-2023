@@ -7,37 +7,25 @@ public class browserHistory {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        String nextNavigation = scanner.nextLine();
-        String currentURL = "blank";
+        String currentURL = scanner.nextLine();
+        ArrayDeque<String> stack = new ArrayDeque<>();
 
-        ArrayDeque<String> history = new ArrayDeque<>();
+        while (!currentURL.equals("Home")) {
+            if (currentURL.equals("back")) {
 
-        while (!nextNavigation.equals("Home")) {
-
-            if (nextNavigation.equals("back")) {
-                if (history.size()==1) {
-                    currentURL = history.pop();
-                } else {
+                if (stack.isEmpty() || stack.size() == 1) {
                     System.out.println("no previous URLs");
-                    nextNavigation = scanner.nextLine();
+
+                    currentURL = scanner.nextLine();
                     continue;
                 }
-
+                stack.pop();
 
             } else {
-                if (!currentURL.equals("blank")) {
-                    history.push(currentURL);
-
-                }
-                currentURL = nextNavigation;
-
+                stack.push(currentURL);
             }
-            System.out.println(currentURL);
-
-
-            nextNavigation = scanner.nextLine();
+            System.out.println(stack.peek());
+            currentURL = scanner.nextLine();
         }
-
-
     }
 }
