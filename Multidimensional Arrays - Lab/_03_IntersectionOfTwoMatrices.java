@@ -15,7 +15,7 @@ public class _03_IntersectionOfTwoMatrices {
         for (int row = 0; row < firstMatrix.length; row++) {
             String[] parts = scanner.nextLine().split(" ");
 
-            for (int col = 0; col < firstMatrix[0].length; col++) {
+            for (int col = 0; col < firstMatrix[row].length; col++) {
                 firstMatrix[row][col] = parts[col].charAt(0);
             }
         }
