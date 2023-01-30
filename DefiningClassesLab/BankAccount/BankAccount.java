@@ -2,30 +2,34 @@ package _06_01_DefiningClassesLab.BankAccount;
 
 public class BankAccount {
 
-    private static double interestRate = 0.02;
-    private static int nextId = 1;
+    private static final double DEFAULT_INTEREST_RATE = 0.02;
+    private static double interestRate = DEFAULT_INTEREST_RATE;
+
+    private static int accountsCount = 0;
 
     private int id;
     private double balance;
 
     public BankAccount() {
-        this.id = nextId;
-        nextId++;
+        accountsCount++;
+
+        this.id = accountsCount;
+        this.balance = 0;
+    }
+
+    public double getInterest(int years) {
+        return this.balance * interestRate * years;
+    }
+
+    public void deposit(double balance) {
+        this.balance += balance;
     }
 
     public static void setInterestRate(double interest) {
         interestRate = interest;
     }
 
-    public double getInterest(int years) {
-        return interestRate * years * this.balance;
-    }
-
-    public void deposit(double amount) {
-        this.balance += amount;
-    }
-
     public int getId() {
-        return id;
+        return this.id;
     }
 }
